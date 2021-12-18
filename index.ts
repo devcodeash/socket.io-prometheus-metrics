@@ -207,9 +207,11 @@ export class SocketIOMetrics {
     }
 
     private bindMetrics() {
-        Object.keys(this.ioServer.nsps).forEach((nsp) =>
-            this.bindNamespaceMetrics(this.ioServer, nsp)
-        );
+        if(this.ioServer.nsps){
+            Object.keys(this.ioServer.nsps).forEach((nsp) =>
+                this.bindNamespaceMetrics(this.ioServer, nsp)
+            );
+        }
 
         if (this.options.checkForNewNamespaces) {
             setInterval(() => {
